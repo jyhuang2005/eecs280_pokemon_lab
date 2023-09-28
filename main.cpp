@@ -16,9 +16,14 @@ private:
   vector<Trainer*> defeated;
 
 public:
-  League(std::istream &player_input, std::istream &gym_leaders_input, int num_gym_leaders)
+  League(std::istream &player_input, std::istream &gym_leaders_input)
    : player(Trainer_factory(player_input)) {
     
+    int num_gym_leaders;
+    string ignore;
+    gym_leaders_input >> num_gym_leaders;
+    gym_leaders_input >> ignore; // read in the word "leaders"
+
     for(int i = 0; i < num_gym_leaders; ++i) {
       gym_leaders.push_back(Trainer_factory(gym_leaders_input));
     }
@@ -111,6 +116,6 @@ int main(int argc, char *argv[]) {
     return 1;
   }
   
-  League battle(player_in, gym_in, 8);
+  League battle(player_in, gym_in);
   battle.play_all_matches();
 }
