@@ -9,14 +9,14 @@
 
 using namespace std;
 
-class Battle {
+class League {
 private:
   Trainer *player;
   vector<Trainer*> gym_leaders;
   vector<Trainer*> defeated;
 
 public:
-  Battle(std::istream &player_input, std::istream &gym_leaders_input, int num_gym_leaders)
+  League(std::istream &player_input, std::istream &gym_leaders_input, int num_gym_leaders)
    : player(Trainer_factory(player_input)) {
     
     for(int i = 0; i < num_gym_leaders; ++i) {
@@ -80,7 +80,7 @@ public:
     }
   }
 
-  ~Battle() {
+  ~League() {
     // Clean up by deleting all Trainer objects
     delete player;
     for(size_t i = 0; i < gym_leaders.size(); ++i) {
@@ -111,6 +111,6 @@ int main(int argc, char *argv[]) {
     return 1;
   }
   
-  Battle battle(player_in, gym_in, 8);
+  League battle(player_in, gym_in, 8);
   battle.play_all_matches();
 }
