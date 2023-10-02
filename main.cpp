@@ -29,7 +29,7 @@ public:
     }
   }
 
-  bool one_battle(Trainer *player, Trainer *gym_leader) {
+  bool one_battle(Trainer *gym_leader) {
     Pokemon enemy = gym_leader->choose_pokemon();
     cout << *gym_leader << " chooses " << enemy << endl;
     Pokemon p = player->choose_pokemon(enemy.get_type());
@@ -50,7 +50,7 @@ public:
 
     int num_wins = 0;
     for(int i = 0; i < 5; ++i) {
-      if (one_battle(player, gym_leader)) {
+      if (one_battle(gym_leader)) {
         ++num_wins;
       }
     }
