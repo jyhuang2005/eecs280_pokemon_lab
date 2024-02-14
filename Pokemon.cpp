@@ -95,5 +95,22 @@ std::istream & operator>>(std::istream &is, Pokemon &pokemon) {
 //          - Otherwise, the pokemon with the highest level wins (in
 //            case of a tie, pokemon a wins).
 bool Pokemon_battle(const Pokemon &a, const Pokemon &b) {
-  return false; // TODO: replace with your implementation
+  int a_level = a.get_level();
+  int b_level = b.get_level();
+  if (a_level - b_level > 10) {
+    return true;
+  }
+  if (b_level - a_level > 10) {
+    return false;
+  }
+  if (a.is_effective_against(b.get_type())) {
+    return true;
+  }
+  if (b.is_effective_against(a.get_type())) {
+    return false;
+  }
+  if (a_level >= b_level) {
+    return true;
+  }
+  return false;
 }
